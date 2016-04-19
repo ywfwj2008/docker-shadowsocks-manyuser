@@ -1,25 +1,13 @@
-import logging
-
 #Config
-MYSQL_HOST = 'ss.xxx.com'
-MYSQL_PORT = 3306
-MYSQL_USER = 'root'
-MYSQL_PASS = 'root'
-MYSQL_DB = 'shadowsocks'
+MYSQL_HOST = 'localhost'  //前端mysql域名/IP
+MYSQL_PORT = 3306         //mysql端口
+MYSQL_USER = 'ss'         //mysql用户名(建议不要用Root账户)
+MYSQL_PASS = 'ss'         //mysql密码
+MYSQL_DB = 'shadowsocks'  //数据库名
+MYSQL_TRANSFER_MUL = 1.0  //流量系数，设置为2.0的话用1M算为2M
 
-MANAGE_PASS = 'passwd'
+MANAGE_PASS = 'ss233333333'
 #if you want manage in other server you should set this value to global ip
 MANAGE_BIND_IP = '127.0.0.1'
 #make sure this port is idle
 MANAGE_PORT = 23333
-#BIND IP
-#if you want bind ipv4 and ipv6 '[::]'
-#if you want bind all of ipv4 if '0.0.0.0'
-#if you want bind all of if only '4.4.4.4'
-SS_BIND_IP = '0.0.0.0'
-SS_METHOD = 'rc4-md5'
-
-#LOG CONFIG
-LOG_ENABLE = False
-LOG_LEVEL = logging.DEBUG
-LOG_FILE = '/var/log/shadowsocks.log'
