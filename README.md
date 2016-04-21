@@ -1,7 +1,7 @@
 # docker-shadowsocks-manyuser
 
 ### 用法:
-    docker run -d --name=ShadowSocks \
+    docker run -d --name=Shadowsocks \
     -p 10000-20000:10000-20000 \
     -p 10000-20000:10000-20000/udp \
     -e MANYUSER=R \
@@ -25,8 +25,8 @@
 |MYSQL_USER	|   |	当MANYUSER变量有参数时，才会启用。|
 |MYSQL_PASSWORD	| |	当MANYUSER变量有参数时，才会启用。|
 |MYSQL_DBNAME	| |	当MANYUSER变量有参数时，才会启用。|
-|METHOD|	aes-256-cfb|	可用选项有：<br> aes-256-cfb/aes-192-cfb/aes-128-cfb/chacha20/salsa20/rc4-md5|
-|PROTOCOL|	origin|	可用参数有：<br> origin/verify_simple/verify_deflate/auth_simple|
-|OBFS	|http_simple_compatible|	可用参数有：<br> plain/http_simple/http_simple_compatible/tls_simple/tls_simple_compatible/random_head/random_head_compatible/OBFS_PARAM|
+|METHOD|	aes-256-cfb|	可用选项有：rc4-md5, aes-256-cfb, aes-192-cfb, aes-128-cfb, chacha20, salsa20|
+|PROTOCOL|	origin|	可用参数有：origin, verify_simple, verify_deflate, auth_simple|
+|OBFS	|http_simple_compatible|	可用参数有：plain, http_simple, http_simple_compatible, tls_simple, tls_simple_compatible, random_head, random_head_compatible, OBFS_PARAM|
 |DNS_IPV6|	false|	可用参数有：false/true|
 |SPAM|  | 可用参数有：On/Off|
