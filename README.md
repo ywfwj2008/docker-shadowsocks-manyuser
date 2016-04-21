@@ -2,18 +2,18 @@
 
 ### 用法:
     docker run -d --name=ShadowSocks \
-    -p 50000-60000:50000-60000 \
-    -p 50000-60000:50000-60000/udp \
+    -p 10000-20000:10000-20000 \
+    -p 10000-20000:10000-20000/udp \
     -e MANYUSER=R \
     -e MYSQL_HOST=1.2.3.4 \
     -e MYSQL_PORT=3306 \
     -e MYSQL_USER=mysqlroot \
-    -e MYSQL_PASSWORD=********* \
+    -e MYSQL_PASSWORD=mysqlpasswd \
     -e MYSQL_DBNAME=shadowsocks \
     -e METHOD=rc4-md5 \
     -e PROTOCOL=auth_simple \
     -e OBFS=http_simple_compatible \
-    -e OBFS_PARAM="youtube.com" \
+    -e OBFS_PARAM="youku.com" \
     ywfwj2008/shadowsocks-manyuser:latest
 
 ### 参数
