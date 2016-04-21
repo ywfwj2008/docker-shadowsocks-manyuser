@@ -30,3 +30,28 @@
 |OBFS	|http_simple_compatible|	可用参数有：plain, http_simple, http_simple_compatible, tls_simple, tls_simple_compatible, random_head, random_head_compatible, OBFS_PARAM|
 |DNS_IPV6|	false|	可用参数有：false/true|
 |SPAM|  | 可用参数有：On/Off|
+
+#### protocol有如下取值：
+
+protocol| 说明
+-------|----------
+"origin"|原版协议
+"verify_simple"|带校验的协议
+"verify_deflate"|带压缩的协议
+"verify_sha1"|带验证抗CCA攻击的协议，可兼容libev的OTA
+"auth_simple"|抗重放攻击的协议
+"auth_sha1"|带验证抗CCA攻击且抗重放攻击的协议
+
+#### obfs有如下取值：
+
+obfs   | 说明
+-------|----------
+"plain"|不混淆
+"http_simple"|伪装为http协议
+"tls_simple"|伪装为tls协议（不建议使用）
+"random_head"|发送一个随机包再通讯的协议
+"tls1.0_session_auth"|伪装为tls session握手协议，同时能抗重放攻击
+
+注：客户端的protocol和obfs配置必须与服务端的一致。
+
+如需要了解更多, [阅读文档](https://github.com/breakwa11/shadowsocks-rss/wiki)
