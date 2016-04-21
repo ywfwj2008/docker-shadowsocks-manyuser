@@ -63,3 +63,5 @@ else
         echo >&2 '  Did you forget to add -e MANYUSER=... ?'
         exit 1
 fi
+
+exec "$@"
