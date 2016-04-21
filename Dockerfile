@@ -13,4 +13,4 @@ RUN cd /home && \
 
 # Configure container to run as an executable
 # nohup python /home/shadowsocks-rm/shadowsocks/server.py &
-ENTRYPOINT ["/usr/bin/python","/home/shadowsocks/server.py"]
+# ENTRYPOINT ["/usr/bin/python","/home/shadowsocks/server.py"]
