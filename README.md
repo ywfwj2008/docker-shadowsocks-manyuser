@@ -16,6 +16,7 @@
     -e OBFS_PARAM="youtube.com" \
     ywfwj2008/shadowsocks-manyuser:latest
 
+### 参数
 |变量名      	|默认参数   	|说明   |
 | ------------- |:-------------:| :---|
 |MANYUSER       |	            |	可用参数有：R/On 当参数是R的时候则使用ShadowSocksR模式的多用户版本，否则用ShadowSocks原版的多用户模式。|
