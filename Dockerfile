@@ -10,6 +10,7 @@ RUN cd /home && \
     #git clone -b manyuser https://github.com/mengskysama/shadowsocks-rm.git /home/shadowsocks
     git clone -b manyuser https://github.com/breakwa11/shadowsocks.git /home/shadowsocks
 
+WORKDIR /home/shadowsocks
 
 # Configure container to run as an executable
 # nohup python /home/shadowsocks-rm/shadowsocks/server.py &
