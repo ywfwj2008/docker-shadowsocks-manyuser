@@ -64,4 +64,4 @@ else
         exit 1
 fi
 
-exec python $INSTALL_DIR/server.py
+exec $INSTALL_DIR/run.sh
