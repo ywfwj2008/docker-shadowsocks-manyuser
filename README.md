@@ -20,14 +20,14 @@
 |变量名      	|默认参数   	|说明   |
 | ------------- |:-------------:| :---|
 |MANYUSER       |	            |	可用参数有：R/On <br> 当参数是R的时候则使用ShadowSocksR模式的多用户版本，否则用ShadowSocks原版的多用户模式。|
-|MYSQL_HOST |	|当MANYUSER变量有参数时，才会启用。|
-|MYSQL_PORT	|	3306|当MANYUSER变量有参数时，才会启用。|
-|MYSQL_USER	|   ss|	当MANYUSER变量有参数时，才会启用。|
-|MYSQL_PASSWORD	| ss|	当MANYUSER变量有参数时，才会启用。|
-|MYSQL_DBNAME	| shadowsocks |	当MANYUSER变量有参数时，才会启用。|
-|METHOD|	aes-256-cfb|	可用选项有：rc4-md5, aes-256-cfb, aes-192-cfb, aes-128-cfb, chacha20, salsa20|
-|PROTOCOL|	auth_sha1_compatible|	可用参数有：origin, verify_simple, verify_deflate, verify_sha1, auth_simple, auth_sha1, auth_sha1_v2, auth_sha1_compatible|
-|OBFS	|tls1.0_session_auth_compatible|	可用参数有：plain, http_simple, http_simple_compatible, tls_simple, tls_simple_compatible, random_head, random_head_compatible
+|MYSQL_HOST |	| 前端mysql域名/IP |
+|MYSQL_PORT	|	3306|mysql端口|
+|MYSQL_USER	|   ss|	mysql用户名(建议不要用Root账户) |
+|MYSQL_PASSWORD	| ss|	mysql密码 |
+|MYSQL_DBNAME	| shadowsocks |	数据库名|
+|METHOD|	aes-256-cfb|	可用选项有：aes-256-cfb, aes-192-cfb, aes-128-cfb, chacha20, salsa20, rc4-md5|
+|PROTOCOL|	auth_sha1_compatible|	[可用参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#protocol有如下取值) |
+|OBFS	|tls1.0_session_auth_compatible|	[可用参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
 |OBFS_PARAM|   |   |
 |DNS_IPV6|	false|	可用参数有：false/true|
 |SPAM|  | 可用参数有：On/Off|
