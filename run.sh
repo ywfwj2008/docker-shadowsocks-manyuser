@@ -60,7 +60,4 @@ else
         exit 1
 fi
 
-# python $INSTALL_DIR/server.py
-# bash $INSTALL_DIR/run.sh
-
 exec "$@"

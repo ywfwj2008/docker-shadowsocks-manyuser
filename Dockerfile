@@ -18,4 +18,4 @@ EXPOSE 10000-12000
 # Configure container to run as an executable
 ENTRYPOINT ["/run.sh"]
 
-CMD ["/bin/bash"]
+CMD ["python", "$INSTALL_DIR/server.py"]
