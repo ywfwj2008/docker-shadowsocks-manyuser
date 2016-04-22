@@ -112,4 +112,33 @@ if [ "$MANYUSER" = "R" ]; then
         sed -ri "s@^(.*\"obfs_param\": ).*@\1\"$OBFS_PARAM\",@" $INSTALL_DIR/user-config.json
 fi
 
+if [ -n "$SPAM" ]; then
+        if [ "$SPAM" = "On" ]; then
+                iptables -t mangle -A OUTPUT -m string --string "Subject" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "HELO" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "SMTP" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "torrent" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string ".torrent" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "peer_id=" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "announce" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "info_hash" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "get_peers" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "find_node" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "BitTorrent" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "announce_peer" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "BitTorrent" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "protocol" --algo bm --to 65535 -j DROP
+                iptables -t mangle -A OUTPUT -m string --string "announce.php?passkey=" --algo bm --to 65535 -j DROP
+                iptables -t filter -A OUTPUT -p tcp -m multiport --dports 25,26,465 -m state --state NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
+                iptables -t filter -A OUTPUT -p tcp -m multiport --dports 109,110,995 -m state --state NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
+                iptables -t filter -A OUTPUT -p tcp -m multiport --dports 143,218,220,993 -m state --state NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
+                iptables -t filter -A OUTPUT -p tcp -m multiport --dports 24,50,57,105,106,158,209,587,1109,24554,60177,60179 -m state --state NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
+                iptables -t mangle -L -nvx --lin
+                iptables -t filter -L -nvx --lin
+        fi
+else
+        echo >&2 'error:  missing SPAM'
+        echo >&2 '  You must be used -e SPAM=[On|Off]'
+fi
+
 exec "$@"
