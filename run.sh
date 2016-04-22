@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #########################################################################
 # File Name: run.sh
 # Author: LookBack
@@ -9,10 +9,6 @@
 PATH=/bin:/sbin:$PATH
 
 set -e
-
-if [ "${1:0:1}" = '-' ]; then
-    set -- python "$@"
-fi
 
 if [ -n "$MANYUSER" ]; then
         if [ -z "$MYSQL_PASSWORD" ]; then
@@ -64,4 +60,7 @@ else
         exit 1
 fi
 
-exec python $INSTALL_DIR/server.py
+# python $INSTALL_DIR/server.py
+# bash $INSTALL_DIR/run.sh
+
+exec "$@"
