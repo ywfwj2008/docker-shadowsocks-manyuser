@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 MAINTAINER ywfwj2008 <ywfwj2008@163.com>
 
-ENV INSTALL_DIR=/home/shadowsocks
+ENV INSTALL_DIR=/shadowsocks
 
 RUN apt-get update && \
     apt-get install -y python-pip python-m2crypto git-core
@@ -18,4 +18,4 @@ EXPOSE 10000-12000
 # Configure container to run as an executable
 ENTRYPOINT ["/run.sh"]
 
-CMD ["python", "$INSTALL_DIR/server.py"]
+CMD ["python", "/shadowsocks/server.py"]
