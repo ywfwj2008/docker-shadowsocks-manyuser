@@ -64,4 +64,4 @@ else
         exit 1
 fi
 
-exec "$@"
+exec python $INSTALL_DIR/server.py
