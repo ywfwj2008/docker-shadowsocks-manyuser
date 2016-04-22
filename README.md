@@ -1,7 +1,7 @@
 # docker-shadowsocks-manyuser
 
 ### 用法:
-    docker run -d --name=Shadowsocks \
+    docker run -d --name=shadowsocks \
     -p 10000-10050:10000-10050 \
     -p 10000-10050:10000-10050/udp \
     -e MANYUSER=R \
@@ -30,7 +30,7 @@
 |OBFS	|tls1.0_session_auth_compatible|	[可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
 |OBFS_PARAM|   |   |
 |DNS_IPV6|	false|	可用参数有：false/true|
-|SPAM|  | 可用参数有：On/Off|
+|SPAM| Off | 可用参数有：On/Off|
 
 #### protocol有如下取值：
 
