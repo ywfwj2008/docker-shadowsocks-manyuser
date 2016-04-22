@@ -13,9 +13,9 @@ RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git $INSTALL_
 ADD run.sh /run.sh
 RUN chmod +x /run.sh
 
-EXPOSE 10000-15000
+EXPOSE 10000-12000
 
 # Configure container to run as an executable
 ENTRYPOINT ["/run.sh"]
 
-CMD ['bash', '/home/shadowsocks/run.sh']
+CMD ["server.py"]

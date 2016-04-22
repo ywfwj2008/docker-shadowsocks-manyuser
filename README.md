@@ -2,8 +2,8 @@
 
 ### 用法:
     docker run -d --name=Shadowsocks \
-    -p 10000-15000:10000-15000 \
-    -p 10000-15000:10000-15000/udp \
+    -p 10000-10050:10000-10050 \
+    -p 10000-10050:10000-10050/udp \
     -e MANYUSER=R \
     -e MYSQL_HOST=1.2.3.4 \
     -e MYSQL_PORT=3306 \
@@ -26,8 +26,8 @@
 |MYSQL_PASSWORD	| ss|	mysql密码 |
 |MYSQL_DBNAME	| shadowsocks |	数据库名|
 |METHOD|	aes-256-cfb|	可用选项有：aes-256-cfb, aes-192-cfb, aes-128-cfb, chacha20, salsa20, rc4-md5|
-|PROTOCOL|	auth_sha1_compatible|	[可用参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#protocol有如下取值) |
-|OBFS	|tls1.0_session_auth_compatible|	[可用参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
+|PROTOCOL|	auth_sha1_compatible|	[可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#protocol有如下取值) |
+|OBFS	|tls1.0_session_auth_compatible|	[可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
 |OBFS_PARAM|   |   |
 |DNS_IPV6|	false|	可用参数有：false/true|
 |SPAM|  | 可用参数有：On/Off|
