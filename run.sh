@@ -61,32 +61,30 @@ else
 fi
 
 if [ "$MANYUSER" = "R" ]; then
-        if [ -z "$PROTOCOL" ]; then
-                echo >&2 'error:  missing PROTOCOL'
-                echo >&2 '  Did you forget to add -e PROTOCOL=... ?'
-                exit 1
-        elif [[ ! "$PROTOCOL" =~ ^(origin|verify_simple|verify_deflate|verify_sha1|verify_sha1_compatible|auth_simple|auth_sha1|auth_sha1_compatible|auth_sha1_v2|auth_sha1_v2_compatible)$ ]]; then
-                echo >&2 'error : missing PROTOCOL'
-                echo >&2 '  You must be used -e PROTOCOL=[origin|verify_simple|verify_deflate|verify_sha1|verify_sha1_compatible|auth_simple|auth_sha1|auth_sha1_compatible|auth_sha1_v2|auth_sha1_v2_compatible]'
-                exit 1
+        # 协议定义
+        if [ -n "$PROTOCOL" ]; then
+                if [[ ! "$PROTOCOL" =~ ^(origin|verify_simple|verify_deflate|verify_sha1|verify_sha1_compatible|auth_simple|auth_sha1|auth_sha1_compatible|auth_sha1_v2|auth_sha1_v2_compatible)$ ]]; then
+                        echo >&2 'error : missing PROTOCOL'
+                        echo >&2 '  You must be used -e PROTOCOL=[origin|verify_simple|verify_deflate|verify_sha1|verify_sha1_compatible|auth_simple|auth_sha1|auth_sha1_compatible|auth_sha1_v2|auth_sha1_v2_compatible]'
+                        exit 1
+                else
+                        sed -ri "s@^(.*\"protocol\": ).*@\1\"$PROTOCOL\",@" $INSTALL_DIR/user-config.json
+
+                fi
         fi
 
-        if [ -z "$OBFS" ]; then
-                echo >&2 'error:  missing OBFS'
-                echo >&2 '  Did you forget to add -e OBFS=... ?'
-                exit 1
-        elif [[ ! "$OBFS" =~ ^(plain|http_simple|http_simple_compatible|tls_simple|tls_simple_compatible|random_head|random_head_compatible|tls1.0_session_auth|tls1.0_session_auth_compatible)$ ]]; then
-                echo >&2 'error:  missing OBFS'
-                echo >&2 '  You must be used -e OBFS=[plain|http_simple|http_simple_compatible|tls_simple|tls_simple_compatible|random_head|random_head_compatible|tls1.0_session_auth|tls1.0_session_auth_compatible]'
-                exit 1
+        # 混淆插件
+        if [ -n "$OBFS" ]; then
+                if [[ ! "$OBFS" =~ ^(plain|http_simple|http_simple_compatible|tls_simple|tls_simple_compatible|random_head|random_head_compatible|tls1.0_session_auth|tls1.0_session_auth_compatible)$ ]]; then
+                        echo >&2 'error:  missing OBFS'
+                        echo >&2 '  You must be used -e OBFS=[plain|http_simple|http_simple_compatible|tls_simple|tls_simple_compatible|random_head|random_head_compatible|tls1.0_session_auth|tls1.0_session_auth_compatible]'
+                        exit 1
+                else
+                        sed -ri "s@^(.*\"obfs\": ).*@\1\"$OBFS\",@" $INSTALL_DIR/user-config.json
+                fi
         fi
 
-        if [ -z "$OBFS_PARAM" ]; then
-                echo >&2 'error:  missing OBFS_PARAM'
-                echo >&2 '  Did you forget to add -e OBFS_PARAM=... ?'
-                exit 1
-        fi
-
+        # 加密方式
         if [ -n "$METHOD" ]; then
                 if [[ ! "$METHOD" =~ ^(aes-(256|192|128)-cfb|(chacha|salsa)20|rc4-md5)$ ]]; then
                         echo >&2 'error:  missing METHOD'
@@ -106,14 +104,10 @@ if [ "$MANYUSER" = "R" ]; then
                         sed -ri "s@^(.*\"dns_ipv6\": ).*@\1\"$DNS_IPV6\",@" $INSTALL_DIR/user-config.json
                 fi
         fi
-
-        sed -ri "s@^(.*\"protocol\": ).*@\1\"$PROTOCOL\",@" $INSTALL_DIR/user-config.json
-        sed -ri "s@^(.*\"obfs\": ).*@\1\"$OBFS\",@" $INSTALL_DIR/user-config.json
-        sed -ri "s@^(.*\"obfs_param\": ).*@\1\"$OBFS_PARAM\",@" $INSTALL_DIR/user-config.json
 fi
 
 if [ -n "$SPAM" ]; then
-        if [ "$SPAM" = "On" ]; then
+        if [ "$SPAM" = "on" ]; then
                 iptables -t mangle -A OUTPUT -m string --string "Subject" --algo bm --to 65535 -j DROP
                 iptables -t mangle -A OUTPUT -m string --string "HELO" --algo bm --to 65535 -j DROP
                 iptables -t mangle -A OUTPUT -m string --string "SMTP" --algo bm --to 65535 -j DROP
@@ -138,7 +132,7 @@ if [ -n "$SPAM" ]; then
         fi
 else
         echo >&2 'error:  missing SPAM'
-        echo >&2 '  You must be used -e SPAM=[On|Off]'
+        echo >&2 '  You must be used -e SPAM=[on|off]'
 fi
 
 exec "$@"

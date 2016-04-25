@@ -28,10 +28,11 @@
 |MYSQL_DBNAME	| shadowsocks |	数据库名|
 |METHOD|	aes-256-cfb|	可用选项有：aes-256-cfb, aes-192-cfb, aes-128-cfb, chacha20, salsa20, rc4-md5|
 |PROTOCOL|	auth_sha1_compatible |	协议定义插件 [可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#protocol有如下取值) |
+|PROTOCOL_PARAM|    | 参数为10进制整数，表示最大客户端同时使用数 |
 |OBFS	| http_simple_compatible |	混淆插件 [可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
-|OBFS_PARAM|   |   |
+|OBFS_PARAM| "" | 参数为http请求的host |
 |DNS_IPV6|	false|	可用参数有：false/true|
-|SPAM| Off | 可用参数有：On/Off (使用时需要加上 --privileged)|
+|SPAM| Off | 可用参数有：on/off (开启需加上 --privileged)|
 
 ### protocol有如下取值：
 
@@ -48,7 +49,7 @@ auth_sha1_compatible| 兼容原协议版 (支持自定义参数)
 auth_sha1_v2| 与auth_sha1相似，去除时间验证 (支持自定义参数)
 auth_sha1_v2_compatible| 兼容原协议版 (支持自定义参数)
 
-自定义参数为10进制整数，表示最大客户端同时使用数。
+自定义参数，参数为10进制整数，表示最大客户端同时使用数。
 
 ### obfs有如下取值：
 
