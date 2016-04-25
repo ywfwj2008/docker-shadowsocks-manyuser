@@ -6,7 +6,7 @@ ENV INSTALL_DIR=/shadowsocks
 
 RUN apt-get update && \
     apt-get install -y python-pip python-m2crypto git-core iptables-dev && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/{apt,dpkg,cache,log}/*
 RUN pip install cymysql
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git $INSTALL_DIR && \
     cp $INSTALL_DIR/config.json $INSTALL_DIR/user-config.json
