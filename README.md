@@ -12,6 +12,7 @@
     -e MYSQL_DBNAME=shadowsocks \
     -e METHOD=rc4-md5 \
     -e PROTOCOL=auth_sha1_compatible \
+    -e PROTOCOL_PARAM=100 \
     -e OBFS=tls1.0_session_auth_compatible \
     -e OBFS_PARAM="youku.com" \
     -e SPAM=On --privileged \
@@ -31,7 +32,7 @@
 |PROTOCOL_PARAM|    | 参数为10进制整数，表示最大客户端同时使用数 |
 |OBFS	| http_simple_compatible |	混淆插件 [可选参数参考](https://github.com/ywfwj2008/docker-shadowsocks-manyuser#obfs有如下取值) |
 |OBFS_PARAM| "" | 参数为http请求的host |
-|DNS_IPV6|	false|	可用参数有：false/true|
+|DNS_IPV6|	false|是否优先使用IPv6地址，有IPv6时可开启 可用参数有：false/true|
 |SPAM| Off | 可用参数有：on/off (开启需加上 --privileged)|
 
 ### protocol有如下取值：
@@ -58,8 +59,8 @@ obfs   | 说明
 plain| 不混淆
 http_simple| 伪装为http协议 (支持自定义参数)
 http_simple_compatible| 兼容原协议版 (支持自定义参数)
-tls_simple| 伪装为tls协议（不建议使用）
-tls_simple_compatible| 兼容原协议版
+~~tls_simple~~| 伪装为tls协议（不建议使用）
+~~tls_simple_compatible~~| 兼容原协议版
 random_head| 发送一个随机包再通讯的协议
 random_head_compatible| 兼容原协议版
 tls1.0_session_auth| 伪装为tls session握手协议，同时能抗重放攻击

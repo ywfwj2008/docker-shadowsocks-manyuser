@@ -73,6 +73,12 @@ if [ "$MANYUSER" = "R" ]; then
                 fi
         fi
 
+        # 协议自定义参数
+        if [ -n "$PROTOCOL_PARAM" ]; then
+            # TODO 10的正整数倍
+            sed -ri "s@^(.*\"protocol_param\": ).*@\1\"$PROTOCOL_PARAM\",@" $INSTALL_DIR/user-config.json
+        fi
+
         # 混淆插件
         if [ -n "$OBFS" ]; then
                 if [[ ! "$OBFS" =~ ^(plain|http_simple|http_simple_compatible|tls_simple|tls_simple_compatible|random_head|random_head_compatible|tls1.0_session_auth|tls1.0_session_auth_compatible)$ ]]; then
@@ -82,6 +88,12 @@ if [ "$MANYUSER" = "R" ]; then
                 else
                         sed -ri "s@^(.*\"obfs\": ).*@\1\"$OBFS\",@" $INSTALL_DIR/user-config.json
                 fi
+        fi
+
+        # 混淆自定义参数
+        if [ -n "$OBFS_PARAM" ]; then
+            # TODO 域名
+            sed -ri "s@^(.*\"obfs_param\": ).*@\1\"$OBFS_PARAM\",@" $INSTALL_DIR/user-config.json
         fi
 
         # 加密方式
@@ -95,6 +107,7 @@ if [ "$MANYUSER" = "R" ]; then
                 fi
         fi
 
+        # IPv6地址
         if [ -n "$DNS_IPV6" ]; then
                 if [[ ! "$DNS_IPV6" =~ ^(false|true)$ ]]; then
                         echo >&2 'error:  missing DNS_IPV6'
