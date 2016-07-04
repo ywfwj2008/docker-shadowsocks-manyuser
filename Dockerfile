@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:latest
 
 MAINTAINER ywfwj2008 <ywfwj2008@163.com>
 
